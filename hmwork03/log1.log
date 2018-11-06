@@ -1,0 +1,453 @@
+Script started on Tue 06 Nov 2018 09:38:08 AM UTC
+]0;root@otuslinux:~[?1034h[root@otuslinux ~]# ls
+anaconda-ks.cfg  original-ks.cfg  typescript
+]0;root@otuslinux:~[root@otuslinux ~]# pvcreate /dev/sb[Kdb
+  Physical volume "/dev/sdb" successfully created.
+]0;root@otuslinux:~[root@otuslinux ~]# vgcreate [K /[Kvg_root_ [K[K /dec[Kv/sda3 [K[K[Kb
+  Volume group "vg_root" successfully created
+]0;root@otuslinux:~[root@otuslinux ~]# ;b[K[Klvcreate -n lv_root -l +1--[K[K00%FREE /dev/vg_root
+  Logical volume "lv_root" created.
+]0;root@otuslinux:~[root@otuslinux ~]# lvs
+  LV       VG         Attr       LSize   Pool Origin Data%  Meta%  Move Log Cpy%Sync Convert
+  LogVol00 VolGroup00 -wi-ao---- <37.47g                                                    
+  LogVol01 VolGroup00 -wi-ao----   1.50g                                                    
+  lv_root  vg_root    -wi-a----- <10.00g                                                    
+]0;root@otuslinux:~[root@otuslinux ~]# mkfs.ext[K[K[Kxf§[Ks /dev/vg
+vga_arbiter  vg_root/     
+[root@otuslinux ~]# mkfs.xfs /dev/vg
+vga_arbiter  vg_root/     
+[root@otuslinux ~]# mkfs.xfs /dev/vg
+vga_arbiter  vg_root/     
+[root@otuslinux ~]# mkfs.xfs /dev/vg_R[Kroot/lv_root 
+meta-data=/dev/vg_root/lv_root   isize=512    agcount=4, agsize=655104 blks
+         =                       sectsz=512   attr=2, projid32bit=1
+         =                       crc=1        finobt=0, sparse=0
+data     =                       bsize=4096   blocks=2620416, imaxpct=25
+         =                       sunit=0      swidth=0 blks
+naming   =version 2              bsize=4096   ascii-ci=0 ftype=1
+log      =internal log           bsize=4096   blocks=2560, version=2
+         =                       sectsz=512   sunit=0 blks, lazy-count=1
+realtime =none                   extsz=4096   blocks=0, rtextents=0
+]0;root@otuslinux:~[root@otuslinux ~]# mont [K[K[Kunt /dev/b[Kvg_t[Kroot/lv_root /mnt/
+]0;root@otuslinux:~[root@otuslinux ~]# ;s[K[Klsblk
+NAME                    MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+sda                       8:0    0   40G  0 disk 
+├─sda1                    8:1    0    1M  0 part 
+├─sda2                    8:2    0    1G  0 part /boot
+└─sda3                    8:3    0   39G  0 part 
+  ├─VolGroup00-LogVol00 253:0    0 37.5G  0 lvm  /
+  └─VolGroup00-LogVol01 253:1    0  1.5G  0 lvm  [SWAP]
+sdb                       8:16   0   10G  0 disk 
+└─vg_root-lv_root       253:2    0   10G  0 lvm  /mnt
+sdc                       8:32   0    2G  0 disk 
+sdd                       8:48   0    1G  0 disk 
+sde                       8:64   0    1G  0 disk 
+sdf                       8:80   0  256M  0 disk 
+sdg                       8:96   0  256M  0 disk 
+]0;root@otuslinux:~[root@otuslinux ~]# xfsdump --g[Khelp
+bash: xfsdump: command not found
+]0;root@otuslinux:~[root@otuslinux ~]# yin[K[K[Kyui[Km is[Knstall xfsdump
+Loaded plugins: fastestmirror
+Loading mirror speeds from cached hostfile
+ * base: mirror.yandex.ru
+ * extras: mirror.yandex.ru
+ * updates: mirror.yandex.ru
+Resolving Dependencies
+--> Running transaction check
+---> Package xfsdump.x86_64 0:3.1.7-1.el7 will be installed
+--> Processing Dependency: attr >= 2.0.0 for package: xfsdump-3.1.7-1.el7.x86_64
+--> Running transaction check
+---> Package attr.x86_64 0:2.4.46-13.el7 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+==============================================================================================================================================================================================================================================
+ Package                                                  Arch                                                    Version                                                         Repository                                             Size
+==============================================================================================================================================================================================================================================
+Installing:
+ xfsdump                                                  x86_64                                                  3.1.7-1.el7                                                     base                                                  308 k
+Installing for dependencies:
+ attr                                                     x86_64                                                  2.4.46-13.el7                                                   base                                                   66 k
+
+Transaction Summary
+==============================================================================================================================================================================================================================================
+Install  1 Package (+1 Dependent package)
+
+Total download size: 374 k
+Installed size: 1.1 M
+Is this ok [y/d/N]: y
+Downloading packages:
+
+(2/2): xfsdump-3.1.7-1.el7.x86_64.rpm                                                                    0% [                                                                                               ]  0.0 B/s |    0 B  --:--:-- ETA 
+
+(1/2): attr-2.4.46-13.el7.x86_64.rpm                                                                                                                                                                                   |  66 kB  00:00:00     
+
+(2/2): xfsdump-3.1.7-1.el7.x86_64.rpm                                                                                                                                                                                  | 308 kB  00:00:00     
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Total                                                                                                                                                                                                         694 kB/s | 374 kB  00:00:00     
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+
+  Installing : attr-2.4.46-13.el7.x86_64 [                                                                                                                                                                                              ] 1/2
+  Installing : attr-2.4.46-13.el7.x86_64 [###########                                                                                                                                                                                   ] 1/2
+  Installing : attr-2.4.46-13.el7.x86_64 [##################################                                                                                                                                                            ] 1/2
+  Installing : attr-2.4.46-13.el7.x86_64 [###################################################                                                                                                                                           ] 1/2
+  Installing : attr-2.4.46-13.el7.x86_64 [#########################################################                                                                                                                                     ] 1/2
+  Installing : attr-2.4.46-13.el7.x86_64 [############################################################################                                                                                                                  ] 1/2
+  Installing : attr-2.4.46-13.el7.x86_64 [###############################################################################                                                                                                               ] 1/2
+  Installing : attr-2.4.46-13.el7.x86_64 [#################################################################################                                                                                                             ] 1/2
+  Installing : attr-2.4.46-13.el7.x86_64 [###############################################################################################                                                                                               ] 1/2
+  Installing : attr-2.4.46-13.el7.x86_64 [####################################################################################################                                                                                          ] 1/2
+  Installing : attr-2.4.46-13.el7.x86_64 [#######################################################################################################################                                                                       ] 1/2
+  Installing : attr-2.4.46-13.el7.x86_64 [#########################################################################################################################                                                                     ] 1/2
+  Installing : attr-2.4.46-13.el7.x86_64 [###########################################################################################################################                                                                   ] 1/2
+  Installing : attr-2.4.46-13.el7.x86_64 [###############################################################################################################################                                                               ] 1/2
+  Installing : attr-2.4.46-13.el7.x86_64 [######################################################################################################################################                                                        ] 1/2
+  Installing : attr-2.4.46-13.el7.x86_64 [############################################################################################################################################                                                  ] 1/2
+  Installing : attr-2.4.46-13.el7.x86_64 [##################################################################################################################################################                                            ] 1/2
+  Installing : attr-2.4.46-13.el7.x86_64 [#########################################################################################################################################################                                     ] 1/2
+  Installing : attr-2.4.46-13.el7.x86_64 [###############################################################################################################################################################                               ] 1/2
+  Installing : attr-2.4.46-13.el7.x86_64 [#####################################################################################################################################################################                         ] 1/2
+  Installing : attr-2.4.46-13.el7.x86_64 [############################################################################################################################################################################                  ] 1/2
+  Installing : attr-2.4.46-13.el7.x86_64 [##################################################################################################################################################################################            ] 1/2
+  Installing : attr-2.4.46-13.el7.x86_64 [######################################################################################################################################################################################        ] 1/2
+  Installing : attr-2.4.46-13.el7.x86_64 [########################################################################################################################################################################################      ] 1/2
+  Installing : attr-2.4.46-13.el7.x86_64 [##########################################################################################################################################################################################    ] 1/2
+  Installing : attr-2.4.46-13.el7.x86_64 [############################################################################################################################################################################################  ] 1/2
+  Installing : attr-2.4.46-13.el7.x86_64                                                                                                                                                                                                  1/2 
+
+  Installing : xfsdump-3.1.7-1.el7.x86_64 [                                                                                                                                                                                             ] 2/2
+  Installing : xfsdump-3.1.7-1.el7.x86_64 [###########                                                                                                                                                                                  ] 2/2
+  Installing : xfsdump-3.1.7-1.el7.x86_64 [########################                                                                                                                                                                     ] 2/2
+  Installing : xfsdump-3.1.7-1.el7.x86_64 [#####################################                                                                                                                                                        ] 2/2
+  Installing : xfsdump-3.1.7-1.el7.x86_64 [#################################################                                                                                                                                            ] 2/2
+  Installing : xfsdump-3.1.7-1.el7.x86_64 [########################################################                                                                                                                                     ] 2/2
+  Installing : xfsdump-3.1.7-1.el7.x86_64 [#####################################################################                                                                                                                        ] 2/2
+  Installing : xfsdump-3.1.7-1.el7.x86_64 [###################################################################################                                                                                                          ] 2/2
+  Installing : xfsdump-3.1.7-1.el7.x86_64 [##############################################################################################                                                                                               ] 2/2
+  Installing : xfsdump-3.1.7-1.el7.x86_64 [###########################################################################################################                                                                                  ] 2/2
+  Installing : xfsdump-3.1.7-1.el7.x86_64 [########################################################################################################################                                                                     ] 2/2
+  Installing : xfsdump-3.1.7-1.el7.x86_64 [####################################################################################################################################                                                         ] 2/2
+  Installing : xfsdump-3.1.7-1.el7.x86_64 [###########################################################################################################################################                                                  ] 2/2
+  Installing : xfsdump-3.1.7-1.el7.x86_64 [#################################################################################################################################################                                            ] 2/2
+  Installing : xfsdump-3.1.7-1.el7.x86_64 [#####################################################################################################################################################                                        ] 2/2
+  Installing : xfsdump-3.1.7-1.el7.x86_64 [#######################################################################################################################################################                                      ] 2/2
+  Installing : xfsdump-3.1.7-1.el7.x86_64 [##################################################################################################################################################################                           ] 2/2
+  Installing : xfsdump-3.1.7-1.el7.x86_64 [########################################################################################################################################################################                     ] 2/2
+  Installing : xfsdump-3.1.7-1.el7.x86_64 [###################################################################################################################################################################################          ] 2/2
+  Installing : xfsdump-3.1.7-1.el7.x86_64 [#######################################################################################################################################################################################      ] 2/2
+  Installing : xfsdump-3.1.7-1.el7.x86_64 [#########################################################################################################################################################################################    ] 2/2
+  Installing : xfsdump-3.1.7-1.el7.x86_64 [###########################################################################################################################################################################################  ] 2/2
+  Installing : xfsdump-3.1.7-1.el7.x86_64                                                                                                                                                                                                 2/2 
+
+  Verifying  : attr-2.4.46-13.el7.x86_64                                                                                                                                                                                                  1/2 
+
+  Verifying  : xfsdump-3.1.7-1.el7.x86_64                                                                                                                                                                                                 2/2 
+
+Installed:
+  xfsdump.x86_64 0:3.1.7-1.el7                                                                                                                                                                                                                
+
+Dependency Installed:
+  attr.x86_64 0:2.4.46-13.el7                                                                                                                                                                                                                 
+
+Complete!
+]0;root@otuslinux:~[root@otuslinux ~]# xfsdump -[K--hrlp
+xfsdump: version 3.1.7 (dump format 3.0)
+xfsdump: usage: xfsdump [ -a (dump DMF dualstate files as offline) ]
+                        [ -b <blocksize> ]
+                        [ -c <media change alert program>  ]
+                        [ -d <dump media file size>  ]
+                        [ -e (allow files to be excluded) ]
+                        [ -f <destination> ... ]
+                        [ -h (help) ]
+                        [ -l <level> ]
+                        [ -m (force usage of minimal rmt) ]
+                        [ -o (overwrite tape) ]
+                        [ -p <seconds between progress reports> ]
+                        [ -q <use QIC tape settings> ]
+                        [ -s <subtree> ... ]
+                        [ -t <file> (use file mtime for dump time ]
+                        [ -v <verbosity {silent, verbose, trace}> ]
+                        [ -z <maximum file size> ]
+                        [ -A (don't dump extended file attributes) ]
+                        [ -B <base dump session id> ]
+                        [ -D (skip unchanged directories) ]
+                        [ -E (pre-erase media) ]
+                        [ -F (don't prompt) ]
+                        [ -I (display dump inventory) ]
+                        [ -J (inhibit inventory update) ]
+                        [ -K (generate format 2 dump) ]
+                        [ -L <session label> ]
+                        [ -M <media label> ... ]
+                        [ -O <options file> ]
+                        [ -R (resume) ]
+                        [ -T (don't timeout dialogs) ]
+                        [ -Y <I/O buffer ring length> ]
+                        [ - (stdout) ]
+                        [ <source (mntpnt|device)> ]
+]0;root@otuslinux:~[root@otuslinux ~]# xfsdump --hrlp[1Plpelp
+xfsdump: version 3.1.7 (dump format 3.0)
+xfsdump: usage: xfsdump [ -a (dump DMF dualstate files as offline) ]
+                        [ -b <blocksize> ]
+                        [ -c <media change alert program>  ]
+                        [ -d <dump media file size>  ]
+                        [ -e (allow files to be excluded) ]
+                        [ -f <destination> ... ]
+                        [ -h (help) ]
+                        [ -l <level> ]
+                        [ -m (force usage of minimal rmt) ]
+                        [ -o (overwrite tape) ]
+                        [ -p <seconds between progress reports> ]
+                        [ -q <use QIC tape settings> ]
+                        [ -s <subtree> ... ]
+                        [ -t <file> (use file mtime for dump time ]
+                        [ -v <verbosity {silent, verbose, trace}> ]
+                        [ -z <maximum file size> ]
+                        [ -A (don't dump extended file attributes) ]
+                        [ -B <base dump session id> ]
+                        [ -D (skip unchanged directories) ]
+                        [ -E (pre-erase media) ]
+                        [ -F (don't prompt) ]
+                        [ -I (display dump inventory) ]
+                        [ -J (inhibit inventory update) ]
+                        [ -K (generate format 2 dump) ]
+                        [ -L <session label> ]
+                        [ -M <media label> ... ]
+                        [ -O <options file> ]
+                        [ -R (resume) ]
+                        [ -T (don't timeout dialogs) ]
+                        [ -Y <I/O buffer ring length> ]
+                        [ - (stdout) ]
+                        [ <source (mntpnt|device)> ]
+]0;root@otuslinux:~[root@otuslinux ~]# xfsdump --help[K[K[K[K[KJ - /dev/VolGroup00/LogVol00 | xfsrestore -L[KJ -/[K /mnt
+xfsdump: using file dump (drive_simple) strategy
+xfsdump: version 3.1.7 (dump format 3.0)
+xfsrestore: using file dump (drive_simple) strategy
+xfsrestore: version 3.1.7 (dump format 3.0)
+xfsdump: level 0 dump of otuslinux:/
+xfsdump: dump date: Tue Nov  6 09:42:25 2018
+xfsdump: session id: 398a97d6-b992-4f87-bba4-39e7c1771b0d
+xfsdump: session label: ""
+xfsrestore: searching media for dump
+xfsdump: ino map phase 1: constructing initial dump list
+xfsdump: ino map phase 2: skipping (no pruning necessary)
+xfsdump: ino map phase 3: skipping (only one dump stream)
+xfsdump: ino map construction complete
+xfsdump: estimated dump size: 824511808 bytes
+xfsdump: creating dump session media file 0 (media 0, file 0)
+xfsdump: dumping ino map
+xfsdump: dumping directories
+xfsrestore: examining media file 0
+xfsrestore: dump description: 
+xfsrestore: hostname: otuslinux
+xfsrestore: mount point: /
+xfsrestore: volume: /dev/mapper/VolGroup00-LogVol00
+xfsrestore: session time: Tue Nov  6 09:42:25 2018
+xfsrestore: level: 0
+xfsrestore: session label: ""
+xfsrestore: media label: ""
+xfsrestore: file system id: b60e9498-0baa-4d9f-90aa-069048217fee
+xfsrestore: session id: 398a97d6-b992-4f87-bba4-39e7c1771b0d
+xfsrestore: media id: 1610c338-d2f3-4cb6-89a4-7439a7974988
+xfsrestore: searching media for directory d
+Script started on Tue 06 Nov 2018 11:47:36 AM UTC
+]0;root@otuslinux:~[?1034h[root@otuslinux ~]# lvre
+lvreduce  lvremove  lvrename  lvresize  
+[root@otuslinux ~]# lvre
+lvreduce  lvremove  lvrename  lvresize  
+[root@otuslinux ~]# lvremove /dev/VolGroup00/LogVol00
+Do you really want to remove active logical volume VolGroup00/LogVol00? [y/n]: y
+  Logical volume "LogVol00" successfully removed
+]0;root@otuslinux:~[root@otuslinux ~]# lvs
+  LV       VG         Attr       LSize   Pool Origin Data%  Meta%  Move Log Cpy%Sync Convert
+  LogVol01 VolGroup00 -wi-ao----   1.50g                                                    
+  lv_root  vg_root    -wi-ao---- <10.00g                                                    
+]0;root@otuslinux:~[root@otuslinux ~]# lvcreate -n Vol[K[K[K[K VolGroup00[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kvgs
+  VG         #PV #LV #SN Attr   VSize   VFree  
+  VolGroup00   1   1   0 wz--n- <38.97g <37.47g
+  vg_root      1   1   0 wz--n- <10.00g      0 
+]0;root@otuslinux:~[root@otuslinux ~]# vgslvsremove /dev/VolGroup00/LogVol00
+[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cs[Kvgs[Klvcreate -0[Kn VolGrop[Kup00/LogVol00 -L *G[K[K8G /dev/VolGroup00
+WARNING: xfs signature detected on /dev/VolGroup00/LogVol00 at offset 0. Wipe it? [y/n]: y
+  Wiping xfs signature on /dev/VolGroup00/LogVol00.
+  Logical volume "LogVol00" created.
+]0;root@otuslinux:~[root@otuslinux ~]# l[Klfs[K[K[Klfs
+bash: lfs: command not found
+]0;root@otuslinux:~[root@otuslinux ~]# lvs
+  LV       VG         Attr       LSize   Pool Origin Data%  Meta%  Move Log Cpy%Sync Convert
+  LogVol00 VolGroup00 -wi-a-----   8.00g                                                    
+  LogVol01 VolGroup00 -wi-ao----   1.50g                                                    
+  lv_root  vg_root    -wi-ao---- <10.00g                                                    
+]0;root@otuslinux:~[root@otuslinux ~]# ьлаы/[K[K[K[K[Kmkg[Kfs.xfs /de[Kev/VolGroup00/LogVol00 
+meta-data=/dev/VolGroup00/LogVol00 isize=512    agcount=4, agsize=524288 blks
+         =                       sectsz=512   attr=2, projid32bit=1
+         =                       crc=1        finobt=0, sparse=0
+data     =                       bsize=4096   blocks=2097152, imaxpct=25
+         =                       sunit=0      swidth=0 blks
+naming   =version 2              bsize=4096   ascii-ci=0 ftype=1
+log      =internal log           bsize=4096   blocks=2560, version=2
+         =                       sectsz=512   sunit=0 blks, lazy-count=1
+realtime =none                   extsz=4096   blocks=0, rtextents=0
+]0;root@otuslinux:~[root@otuslinux ~]# mouny [K[K[K[K[K[Klsblk
+NAME                    MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+sda                       8:0    0   40G  0 disk 
+├─sda1                    8:1    0    1M  0 part 
+├─sda2                    8:2    0    1G  0 part /boot
+└─sda3                    8:3    0   39G  0 part 
+  ├─VolGroup00-LogVol00 253:1    0    8G  0 lvm  
+  └─VolGroup00-LogVol01 253:2    0  1.5G  0 lvm  [SWAP]
+sdb                       8:16   0   10G  0 disk 
+└─vg_root-lv_root       253:0    0   10G  0 lvm  /
+sdc                       8:32   0    2G  0 disk 
+sdd                       8:48   0    1G  0 disk 
+sde                       8:64   0    1G  0 disk 
+sdf                       8:80   0  256M  0 disk 
+sdg                       8:96   0  256M  0 disk 
+]0;root@otuslinux:~[root@otuslinux ~]# mount /dev/VolGroup00/lo[K[KLogVol00 /n[Kmnt/[K
+]0;root@otuslinux:~[root@otuslinux ~]# ls[K[Kxfsdump -J - /dev/VolGroup00/LogVol0[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kvg_root/lv_root | xfres[K[K[K[Kfsrestore -J -/[K /mnt/[K
+xfsrestore: using file dump (drive_simple) strategy
+xfsrestore: version 3.1.7 (dump format 3.0)
+xfsdump: using file dump
+Script started on Tue 06 Nov 2018 12:35:31 PM UTC
+]0;root@otuslinux:~[?1034h[root@otuslinux ~]# lvremove /dev/vg_root/lv_root 
+Do you really want to remove active logical volume vg_root/lv_root? [y/n]: y
+  Logical volume "lv_root" successfully removed
+]0;root@otuslinux:~[root@otuslinux ~]# vgremove b[Kvb[Kn[Kg_root [K[K[K[K[K[K[K[Kd[K/dev/[K/vg_root
+  Volume group "vg_root" successfully removed
+]0;root@otuslinux:~[root@otuslinux ~]# pvremove /dev/sdb
+  Labels on physical volume "/dev/sdb" successfully wiped.
+]0;root@otuslinux:~[root@otuslinux ~]# lsblk
+NAME                     MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+sda                        8:0    0   40G  0 disk 
+├─sda1                     8:1    0    1M  0 part 
+├─sda2                     8:2    0    1G  0 part /boot
+└─sda3                     8:3    0   39G  0 part 
+  ├─VolGroup00-LogVol00  253:0    0    8G  0 lvm  /
+  └─VolGroup00-LogVol01  253:1    0  1.5G  0 lvm  [SWAP]
+sdb                        8:16   0   10G  0 disk 
+sdc                        8:32   0    2G  0 disk 
+├─vg_var-lv_var_rmeta_0  253:2    0    4M  0 lvm  
+│ └─vg_var-lv_var        253:6    0  952M  0 lvm  /var
+└─vg_var-lv_var_rimage_0 253:3    0  952M  0 lvm  
+  └─vg_var-lv_var        253:6    0  952M  0 lvm  /var
+sdd                        8:48   0    1G  0 disk 
+├─vg_var-lv_var_rmeta_1  253:4    0    4M  0 lvm  
+│ └─vg_var-lv_var        253:6    0  952M  0 lvm  /var
+└─vg_var-lv_var_rimage_1 253:5    0  952M  0 lvm  
+  └─vg_var-lv_var        253:6    0  952M  0 lvm  /var
+sde                        8:64   0    1G  0 disk 
+sdf                        8:80   0  256M  0 disk 
+sdg                        8:96   0  256M  0 disk 
+]0;root@otuslinux:~[root@otuslinux ~]# df -tT[K[KTt /dev/
+Display all 154 possibilities? (y or n)
+[root@otuslinux ~]# df -Tt /dev/Va[KolGroup00/LogVol00 
+df: no file systems processed
+]0;root@otuslinux:~[root@otuslinux ~]# df -Tt /dev/VolGroup00/LogVol00 [K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Klvcreate -n LogVol_home[K[K[K[KHome -L 2G /dev/VolGroupd[K00
+  Logical volume "LogVol_Home" created.
+]0;root@otuslinux:~[root@otuslinux ~]# mkfs.xfs /dev/VolGroup00/LogVol_Home 
+meta-data=/dev/VolGroup00/LogVol_Home isize=512    agcount=4, agsize=131072 blks
+         =                       sectsz=512   attr=2, projid32bit=1
+         =                       crc=1        finobt=0, sparse=0
+data     =                       bsize=4096   blocks=524288, imaxpct=25
+         =                       sunit=0      swidth=0 blks
+naming   =version 2              bsize=4096   ascii-ci=0 ftype=1
+log      =internal log           bsize=4096   blocks=2560, version=2
+         =                       sectsz=512   sunit=0 blks, lazy-count=1
+realtime =none                   extsz=4096   blocks=0, rtextents=0
+]0;root@otuslinux:~[root@otuslinux ~]# mount /dev/VolGroup00/LogVol
+LogVol00     LogVol01     LogVol_Home  
+[root@otuslinux ~]# mount /dev/VolGroup00/LogVol_Home  /m
+media/ mnt/   
+[root@otuslinux ~]# mount /dev/VolGroup00/LogVol_Home  /m[K[K[K/mnt/
+]0;root@otuslinux:~[root@otuslinux ~]# cp a[K-aR /home [K/vagrant/[K[K[K[K[K[K[K[K* /mnt/
+]0;root@otuslinux:~[root@otuslinux ~]# rm /-r[K[K[K-rf /home/*
+]0;root@otuslinux:~[root@otuslinux ~]# umount /mnr[Kt/vagrant/[K[K[K[K[K[K[K[K
+]0;root@otuslinux:~[root@otuslinux ~]# moi[Kunt /dev/VolGroup00/LogVol_Home /home/
+]0;root@otuslinux:~[root@otuslinux ~]# echo "`blkid | grep Home | awk '{print $2}'` /home xfs defaults 0 0" >> /etc/fstab
+]0;root@otuslinux:~[root@otuslinux ~]# toucj[Kh /home/vil[K[K[Kfile [K{}1},}[1P}.}.}2}0}
+]0;root@otuslinux:~[root@otuslinux ~]# ls[K[Kls
+anaconda-ks.cfg  log1.log  log2.log  original-ks.cfg  typescript
+]0;root@otuslinux:~[root@otuslinux ~]# lsblk
+NAME                       MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+sda                          8:0    0   40G  0 disk 
+├─sda1                       8:1    0    1M  0 part 
+├─sda2                       8:2    0    1G  0 part /boot
+└─sda3                       8:3    0   39G  0 part 
+  ├─VolGroup00-LogVol00    253:0    0    8G  0 lvm  /
+  ├─VolGroup00-LogVol01    253:1    0  1.5G  0 lvm  [SWAP]
+  └─VolGroup00-LogVol_Home 253:7    0    2G  0 lvm  /home
+sdb                          8:16   0   10G  0 disk 
+sdc                          8:32   0    2G  0 disk 
+├─vg_var-lv_var_rmeta_0    253:2    0    4M  0 lvm  
+│ └─vg_var-lv_var          253:6    0  952M  0 lvm  /var
+└─vg_var-lv_var_rimage_0   253:3    0  952M  0 lvm  
+  └─vg_var-lv_var          253:6    0  952M  0 lvm  /var
+sdd                          8:48   0    1G  0 disk 
+├─vg_var-lv_var_rmeta_1    253:4    0    4M  0 lvm  
+│ └─vg_var-lv_var          253:6    0  952M  0 lvm  /var
+└─vg_var-lv_var_rimage_1   253:5    0  952M  0 lvm  
+  └─vg_var-lv_var          253:6    0  952M  0 lvm  /var
+sde                          8:64   0    1G  0 disk 
+sdf                          8:80   0  256M  0 disk 
+sdg                          8:96   0  256M  0 disk 
+]0;root@otuslinux:~[root@otuslinux ~]# lvcreate 0L[K[K-L 100MB -s -nm[K ho,e [K_[K[K[Kme_snap /dev/VolGroup/[K00/LogVol_Hos[Kme
+  Rounding up size to full physical extent 128.00 MiB
+  Logical volume "home_snap" created.
+]0;root@otuslinux:~[root@otuslinux ~]# lvcreate -L 100MB -s -n home_snap /dev/VolGroup00/LogVol_Home
+[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Csblk[K[Kblk
+NAME                            MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+sda                               8:0    0   40G  0 disk 
+├─sda1                            8:1    0    1M  0 part 
+├─sda2                            8:2    0    1G  0 part /boot
+└─sda3                            8:3    0   39G  0 part 
+  ├─VolGroup00-LogVol00         253:0    0    8G  0 lvm  /
+  ├─VolGroup00-LogVol01         253:1    0  1.5G  0 lvm  [SWAP]
+  ├─VolGroup00-LogVol_Home-real 253:8    0    2G  0 lvm  
+  │ ├─VolGroup00-LogVol_Home    253:7    0    2G  0 lvm  /home
+  │ └─VolGroup00-home_snap      253:10   0    2G  0 lvm  
+  └─VolGroup00-home_snap-cow    253:9    0  128M  0 lvm  
+    └─VolGroup00-home_snap      253:10   0    2G  0 lvm  
+sdb                               8:16   0   10G  0 disk 
+sdc                               8:32   0    2G  0 disk 
+├─vg_var-lv_var_rmeta_0         253:2    0    4M  0 lvm  
+│ └─vg_var-lv_var               253:6    0  952M  0 lvm  /var
+└─vg_var-lv_var_rimage_0        253:3    0  952M  0 lvm  
+  └─vg_var-lv_var               253:6    0  952M  0 lvm  /var
+sdd                               8:48   0    1G  0 disk 
+├─vg_var-lv_var_rmeta_1         253:4    0    4M  0 lvm  
+│ └─vg_var-lv_var               253:6    0  952M  0 lvm  /var
+└─vg_var-lv_var_rimage_1        253:5    0  952M  0 lvm  
+  └─vg_var-lv_var               253:6    0  952M  0 lvm  /var
+sde                               8:64   0    1G  0 disk 
+sdf                               8:80   0  256M  0 disk 
+sdg                               8:96   0  256M  0 disk 
+]0;root@otuslinux:~[root@otuslinux ~]# rm[K[Kpwd
+/root
+]0;root@otuslinux:~[root@otuslinux ~]# cd /home/
+]0;root@otuslinux:/home[root@otuslinux home]# ls
+file1  file10  file11  file12  file13  file14  file15  file16  file17  file18  file19  file2  file20  file3  file4  file5  file6  file7  file8  file9  [0m[38;5;27mvagrant[0m
+]0;root@otuslinux:/home[root@otuslinux home]# rm -g /[K[K[Kf /home/file [K()[K[K{}1}1}.}2}2}[1P}[1P}.}.}[1P}2}2}
+]0;root@otuslinux:/home[root@otuslinux home]# ls
+file1  file10  file2  file3  file4  file5  file6  file7  file8  file9  [0m[38;5;27mvagrant[0m
+]0;root@otuslinux:/home[root@otuslinux home]# umount /home/
+umount: /home: target is busy.
+        (In some cases useful info about processes that use
+         the device is found by lsof(8) or fuser(1))
+]0;root@otuslinux:/home[root@otuslinux home]# cd ..[K[K/to[K[Kroot/
+]0;root@otuslinux:~[root@otuslinux ~]# im[Kum[K[K[Kumount /home/
+]0;root@otuslinux:~[root@otuslinux ~]# lvconcert --merger[K /dev/VolGroup00/home_snap [1P[1@v
+  Merging of volume VolGroup00/home_snap started.
+  VolGroup00/LogVol_Home: Merged: 100.00%
+]0;root@otuslinux:~[root@otuslinux ~]# mount .[K/home
+]0;root@otuslinux:~[root@otuslinux ~]# ls
+anaconda-ks.cfg  log1.log  log2.log  original-ks.cfg  typescript
+]0;root@otuslinux:~[root@otuslinux ~]# cd /home/
+]0;root@otuslinux:/home[root@otuslinux home]# ls
+file1  file10  file11  file12  file13  file14  file15  file16  file17  file18  file19  file2  file20  file3  file4  file5  file6  file7  file8  file9  [0m[38;5;27mvagrant[0m
+]0;root@otuslinux:/home[root@otuslinux home]# exit
+exit
+
+Script done on Tue 06 Nov 2018 12:44:45 PM UTC
