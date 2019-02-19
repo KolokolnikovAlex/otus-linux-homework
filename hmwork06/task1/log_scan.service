@@ -1,0 +1,7 @@
+[Unit]
+Description= 30 sec log scanner for keyword daemon
+
+[Service]
+Type=oneshot
+EnvironmentFile=/etc/sysconfig/log_scan
+ExecStart=/bin/bash /tmp/log_scan.sh

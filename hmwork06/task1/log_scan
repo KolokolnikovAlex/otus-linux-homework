@@ -1,0 +1,3 @@
+FILE = /tmp/log
+KEYWORD = Error
+RESULT_FILE = /var/log/log_scan_result

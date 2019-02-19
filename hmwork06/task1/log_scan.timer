@@ -1,0 +1,9 @@
+[Unit]
+Description= 30 sec log scanner for keyword daemon
+
+[Timer]
+OnUnitActiveSec=30s
+OnBootSec=30s
+
+[Install]
+WantedBy=timers.target
